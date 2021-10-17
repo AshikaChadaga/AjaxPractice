@@ -51,3 +51,4 @@ function userAdded(data) {
     console.log("User Added: " + data);
 }
 makeAJAXCall("POST", postURL, userAdded, true, emplData);
+console.log("\nMade POST AJAX Call to Server at: " + showTime());
