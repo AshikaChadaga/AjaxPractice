@@ -3,7 +3,7 @@ function showTime() {
   return date.getHours() + "H: " + date.getMinutes() + "M: " + date.getSeconds() + "S";
 }
 
-function makePromiseCall(methodType, url, async = true, data = null) {
+function makeServiceCall(methodType, url, async = true, data = null) {
   return new Promise(function (resolve, reject) {
     let xhr = new XMLHttpRequest();
     xhr.onload = function () {
@@ -40,8 +40,8 @@ function makePromiseCall(methodType, url, async = true, data = null) {
 }
 
 const getElem = document.querySelector("#get_services");
-const getURL = "http://localhost:3000/employees/1"
-makePromiseCall("GET", getURL, true)
+const getURL = "http://127.0.0.1:3000/EmployeePayrollDB/1"
+makeServiceCall("GET", getURL, true)
   .then(responseText => {
     getElem.textContent = "Get user data: " + responseText;
   })
@@ -51,18 +51,18 @@ makePromiseCall("GET", getURL, true)
 
 
 const deleteElem = document.querySelector("#delete_services");
-const deleteURL = "http://127.0.0.1:3000/employees/4";
-makePromiseCall("DELETE", deleteURL, false)
+const deleteURL = "http://127.0.0.1:3000/EmployeePayrollDB/3";
+makeServiceCall("DELETE", deleteURL, false)
   .then(responseText => {
     deleteElem.textContent = "User deleted: " + responseText;
   })
   .catch(error => { deleteElem.textContent = "DELETE Error status: " + JSON.stringify(error) });
 
 const postElem = document.querySelector("#post_services");
-const postURL = "http://127.0.0.1:3000/employees";
+const postURL = "http://127.0.0.1:3000/EmployeePayrollDB";
 const emplData = { "name": "Bakugo", "salary": "100000" }
 
-makePromiseCall("POST", postURL, true, emplData)
+makeServiceCall("POST", postURL, true, emplData)
   .then(responseText => {
     postElem.textContent = "User added: " + responseText;
   })
